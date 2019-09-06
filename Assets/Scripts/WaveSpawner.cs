@@ -9,6 +9,7 @@ public class WaveSpawner : MonoBehaviour
 
     public float timeBetweenWaves = 5f;
     public float spawnDelay = 0.5f;
+    public float spawnRadius = 20f;
     private float countdown = 2f;
     private int waveNumber = 1;
     public Transform spawnPoint;
@@ -40,7 +41,8 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(){
         // GameObject e = (GameObject)
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Vector2 r = Random.insideUnitCircle;
+        Instantiate(enemyPrefab, spawnPoint.position + (spawnRadius * new Vector3(r.x,0f,r.y)), spawnPoint.rotation);
         //e.GetComponent<Enemy>().PushDestination(destination.position);
     }
 }
